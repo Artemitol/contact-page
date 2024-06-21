@@ -1,3 +1,4 @@
-.body {
-    
-}
+@use "properties/_resets" as *;
+
+@import "properties/_fonts";
+@import "properties/_colors";
