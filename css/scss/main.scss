@@ -3,11 +3,32 @@
 @import "properties/_fonts";
 @import "properties/_colors";
 
-body {
-    font-size: $parrent-font-size;
-    color: white;
-
+html {
     background-image: url(/assets/bg-image.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    font-size: $parrent-font-size + 0px;
+    color: white;
+}
+
+.site-wrapper {
+    padding: calc(16px * 1.5);
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
 h1 {
@@ -18,11 +39,168 @@ h2 {
     @include main-font-h2
 }
 
-section.header {
-
+label {
+    @include main-font-label
 }
 
 section.text {
-    text-align: left;
+    text-align: center;
+
+    .text-wrapper {
+        padding: 1rem;
+        
+        *:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
 }
 
+// All form styles is here
+section.form {
+    .form-container {
+        padding: 1.6rem;
+        background-color: #ffffff32;
+        border-radius: 16px;
+    }
+    
+    form.contact-form {
+        .form-element {
+            display:flex;
+            flex-direction: column;
+            gap: 4px
+        }
+
+        * {
+            width: 100%;
+        }
+
+        input, select {
+            height: 100%;
+            padding: 20px;
+            border-radius: 16px;
+            border: #fff;
+            @include main-font-button_text;
+        }
+        input:focus, select:focus {
+            
+        }
+        input[type=text]:focus {
+            outline: auto;
+            border: 2px solid #1500ff;            
+        }
+
+        input[type=text]::placeholder {
+            color: #CDD5E0;
+            @include main-font-body
+        }
+
+        input[type=button] {
+            @include main-font-button_text;
+            color: #4036A9;
+        }
+
+        #message {
+            height: 200px;
+            text-wrap: wrap;
+        }
+
+
+        @mixin button-changed-state {
+            background-color: #4036A9;
+            color: #fff;
+        }
+
+        @media (hover: hover)
+        {
+            input[type=button]:hover {
+                @include button-changed-state
+            }
+        }
+        @media (hover: none)
+        {
+            input[type=button]:active {
+                @include button-changed-state
+            }
+        }
+    }
+
+}
+
+@media (max-width: calc(640rem / $parrent-font-size)) {
+    section.text {
+        font-size: 0.5rem;
+
+        h1 {
+            font-size: 4em;
+        }
+        h2 {
+            font-size: 2em;
+        }
+    }
+
+    section.form {
+        form.contact-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            gap: 1.7rem;
+        }
+    }
+}
+
+@media (min-width: calc(641rem / $parrent-font-size)) {
+    section.text {
+        font-size: 0.5rem;
+
+        h1 {
+            font-size: 4em;
+        }
+        h2 {
+            font-size: 2em;
+        }
+    }
+
+    section.form {
+        max-width: calc(1200rem / $parrent-font-size);
+
+        form.contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(4, cover);
+            gap: 2rem;
+
+            .form-element {
+                &:nth-child(1) {
+                    grid-column: 1 / 2;
+                    grid-row: 1 / 2;
+                }
+
+                &:nth-child(2) {
+                    grid-column: 2 / 3;
+                    grid-row: 1 / 2;
+                }
+                
+                &:nth-child(3) {
+                    grid-column: 1 / 2;
+                    grid-row: 2 / 3;
+                }
+
+                &:nth-child(4) {
+                    grid-column: 2 / 3;
+                    grid-row: 2 / 3;
+                }
+
+                &:nth-child(5) {
+                    grid-column: 1 / 3;
+                    grid-row: 3 / 4;
+                }
+
+                &:nth-child(6) {
+                    grid-column: 1 / 3;
+                    grid-row: 4 / 5;
+                }
+            }
+            
+        }
+    }
+}
