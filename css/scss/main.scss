@@ -2,3 +2,27 @@
 
 @import "properties/_fonts";
 @import "properties/_colors";
+
+body {
+    font-size: $parrent-font-size;
+    color: white;
+
+    background-image: url(/assets/bg-image.svg);
+}
+
+h1 {
+    @include main-font-h1
+}
+
+h2 {
+    @include main-font-h2
+}
+
+section.header {
+
+}
+
+section.text {
+    text-align: left;
+}
+
